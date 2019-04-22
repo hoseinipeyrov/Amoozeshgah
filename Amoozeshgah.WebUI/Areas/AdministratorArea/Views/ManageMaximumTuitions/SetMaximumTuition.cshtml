@@ -1,0 +1,187 @@
+﻿@model Amoozeshgah.ViewModel.MaximumTuitionDto
+@{
+    ViewBag.Title = "تعیین سقف شهریه";
+    Layout = "~/Views/Shared/_LayoutTableLess.cshtml";
+}
+
+<style>
+    .white-readonly {
+        background-color: white !important;
+    }
+
+    .ltrInput {
+        direction: ltr !important;
+    }
+
+    .form-horizontal .control-label {
+        text-align: right;
+    }
+</style>
+<div class="col-md-12">
+    @using (Html.BeginForm("SetMaximumTuition", "ManageMaximumTuitions", FormMethod.Post, new { onsubmit = "return setMaximumTuition(this)" }))
+    {
+        <div class="alert alert-info alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>توجه!</strong> لطفا مبالغ را به ریال وارد نمایید
+        </div>
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            نرخ برای مراکز آموزشی علمی و زبان خارجه بر اساس یک ساعت کلاس و برای مراکز آزمون بر اساس یک جلسه می باشد
+        </div>
+        <div class="form-horizontal col-md-12">
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.AreaId, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.DropDownListFor(m => m.AreaId, Model.Areas, "انتخاب کنید", new { @class = "form-control" })
+                    &nbsp; @Html.ValidationMessageFor(m => m.AreaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.FromJalali, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.TextBoxFor(m => m.FromJalali, new { @class = "form-control white-readonly ltrInput", @readonly = "readonly" })
+                    &nbsp; @Html.ValidationMessageFor(m => m.FromJalali, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.ToJalali, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.TextBoxFor(m => m.ToJalali, new { @class = "form-control white-readonly ltrInput", @readonly = "readonly" })
+                    &nbsp; @Html.ValidationMessageFor(m => m.ToJalali, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.ScienceElementry, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.ScienceElementry, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.ScienceElementry, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.ScienceFirstMiddle, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.ScienceFirstMiddle, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.ScienceFirstMiddle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.ScienceSecondMiddle, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.ScienceSecondMiddle, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.ScienceSecondMiddle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.LanguageElementary, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.LanguageElementary, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.LanguageElementary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.LanguageMiddle, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.LanguageMiddle, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.LanguageMiddle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.LanguageAdvanced, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.LanguageAdvanced, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.LanguageAdvanced, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                @Html.LabelFor(m => m.Exam, new { @class = "control-label col-xs-12" })
+                <div class="col-xs-12">
+                    @Html.EditorFor(model => model.Exam, new { htmlAttributes = new { @class = "form-control ltrInput", min = "0" } })
+                    &nbsp; @Html.ValidationMessageFor(m => m.Exam, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <div class="col-xs-12">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                <div class="col-xs-12">
+                   &nbsp;
+                </div>
+            </div>
+            
+
+            <div class="form-group col-lg-12">
+                <hr />
+                <div class="col-lg-3 col-lg-offset-4">
+                    <input type="submit" class="btn btn-success btn-block" value="ثبت"/>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+@section scripts
+{
+    <script src="~/wwwroot/bower_components/persian-jalali-calendar/src/kamadatepicker.js"></script>
+
+    <script>
+
+        var customOptions = {
+            closeAfterSelect: true
+            , buttonsColor: "blue"
+            , forceFarsiDigits: false
+            , markToday: true
+            , markHolidays: true
+            , highlightSelectedDay: true
+            , sync: true
+            , gotoToday: true
+        }
+        kamaDatepicker('FromJalali', customOptions);
+        kamaDatepicker('ToJalali', customOptions);
+
+
+        function setMaximumTuition(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            swal({
+                                title: "ذخیره قوانین",
+                                text: data.message,
+                                type: "success",
+                                confirmButtonClass: "btn-success",
+                                confirmButtonText: "باشه",
+                                closeOnConfirm: true
+                            });
+
+                        } else {
+                            swal({
+                                title: "خطا",
+                                text: data.message,
+                                type: "error",
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "سعی دوباره",
+                                closeOnConfirm: true
+                            });
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+    </script>
+
+}

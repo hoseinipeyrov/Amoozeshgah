@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Amoozeshgah.WebReferences.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Amoozeshgah_WebReferences_Parsian_SaleService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx</Value>
+    </Setting>
+    <Setting Name="Amoozeshgah_WebReferences_ir_shaparak_pec_OnlineMultiplexedSalePaymentService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://pec.shaparak.ir/NewIPGServices/MultiplexedSale/OnlineMultiplexedSalePaymentService.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

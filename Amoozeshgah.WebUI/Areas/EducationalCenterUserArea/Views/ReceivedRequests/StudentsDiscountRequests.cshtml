@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "لیست درخواست های تخفیف";
+}
+
+<style>
+    .dataTables_filter {
+        text-align: left !important;
+    }
+</style>
+<div class="col-md-12">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#notResponsed">بررسی نشده</a></li>
+        <li><a data-toggle="tab" href="#responsed">بررسی شده</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="notResponsed" class="tab-pane fade in active">
+          
+            <table class="table display table-responsive table-hover table-striped notResponsedTable"  style="width: 100% !important">
+                <thead>
+                <tr>
+                    <td>نام فراگیر</td>
+                    <td>رشته</td>
+                    <td>درس</td>
+                    <td>نام کلاس</td>
+                    <td>کد کلاس</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            
+
+
+        </div>
+        <div id="responsed" class="tab-pane  in " >
+           
+            <table  class="table display table-responsive table-hover table-striped ResponsedTable" style="width: 100% !important">
+                <thead>
+                <tr>
+                    <td>نام فراگیر</td>
+                    <td>رشته</td>
+                    <td>درس</td>
+                    <td>نام کلاس</td>
+                    <td>کد کلاس</td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+@section scripts
+{
+
+    <script>
+       
+
+        $('.notResponsedTable').DataTable({
+            bFilter: true,
+            bInfo: false,
+            ajax: {
+                url: "/EducationalCenterUserArea/ReceivedRequests/GetAllNotResponsed",
+                type: "GET",
+                datatype: "json"
+            },
+            columns: [
+                { data: "StudentFullName" },
+                { data: "Field" },
+                { data: "Lesson" },
+                { data: "CourseName" },
+                { data: "CourseCode" },
+                
+                {
+                    data: "Id",
+                    render: function(id) {
+                        return `<a class='btn btn-default btn-sm' href='/EducationalCenterUserArea/ReceivedRequests/ResponseToDiscountRequest/${id}'><i class='fa fa-fw fa-pencil-square-o' aria-hidden='true'></i>بررسی</a>`;
+                    },
+                    orderable: false,
+                    width: "70px"
+                }
+            ],
+           language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Persian.json"
+            }
+        });
+
+        $('.ResponsedTable').DataTable({
+            bFilter: true,
+            bInfo: false,
+            ajax: {
+                url: "/EducationalCenterUserArea/ReceivedRequests/GetAllResponsed",
+                type: "GET",
+                datatype: "json"
+            },
+            columns: [
+                { data: "StudentFullName" },
+                { data: "Field" },
+                { data: "Lesson" },
+                { data: "CourseName" },
+                { data: "CourseCode" }
+
+            ],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Persian.json"
+            }
+        });
+    </script>
+}

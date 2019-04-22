@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Amoozeshgah.Domain.Entities.Menu>
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:rgb(91, 192, 222);">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        @Html.ActionLink("آموزشگاه", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
+    </div>
+    <ul class="nav navbar-top-links navbar-left">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> پروفایل من</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gear fa-fw"></i> تنظیمات</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> خروج</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                @foreach (var menu in Model)
+                {
+                    <li>
+                        <a href="#"><i class="@menu.CssClass" data-name="@menu.IconName" data-loop="true" data-duration="2000" data-color="#5bc0de" data-hovercolor="#FFFFFF" data-size="20"></i> @menu.Name<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @foreach (var item in menu.SiteMenuItems)
+                            {
+                                <li><a href="@Url.Action(item.Action,item.Controller)">@item.Name</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

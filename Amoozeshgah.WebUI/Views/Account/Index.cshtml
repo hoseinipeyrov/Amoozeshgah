@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/wwwroot/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-horizontal">
+                    @using (Html.BeginForm("Index", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+                    {
+                        <button type="submit" class="btn btn-info" name="type" value="1">ورود کاربران آموزشگاه زبان</button>
+                        <button type="submit" class="btn btn-primary" name="type" value="1">ورود کاربران آموزشگاه علمی</button>
+                        <button type="submit" class="btn btn-primary" name="type" value="2">ورود کاربران آموزش و پرورش</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/wwwroot/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/Scripts/bootstrap.rtl.min.js"></script>
+</body>
+</html>

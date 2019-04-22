@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Amoozeshgah.ViewModel.EducationalCenterTeacherDto>
+
+@{
+    ViewBag.Title = "مدرسین";
+}
+
+<h3>مدرسین</h3>
+
+
+<p>
+    @Html.ActionLink("مدرس جدید", "AddNewTeacher")
+</p>
+@if (TempData["AddTeacherMessage"]!=null)
+{
+    @Html.Raw((TempData["AddTeacherMessage"] as string))
+}
+
+@using (Html.BeginForm("ChangeStatus","EducationCenterTeachers",FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NationalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NationalCode)
+                </td>
+                <td>
+                    @Html.Raw(item.Status)
+
+                </td>
+
+                <td>
+                    <button type="submit" class="btn btn-default btn-outline btn-sm" name="nationalCode" id="nationalCode" value="@item.NationalCode">تغییر وضعیت</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}

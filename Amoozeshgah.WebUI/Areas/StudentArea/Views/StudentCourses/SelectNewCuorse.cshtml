@@ -1,0 +1,100 @@
+﻿@model Amoozeshgah.ViewModel.SelectNewCourseDto
+@{
+    ViewBag.Title = "SelectNewCuorse";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>انتخاب درس</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    @*@Html.LabelFor(model => model.SexId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.DropDownListFor(p=>p.ProvinceId, Model.Provinces, "", new { @class = "provincedd s2" })
+                </div>
+                <div class="col-sm-3">
+                    @*@Html.LabelFor(model => model.SexId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.DropDownListFor(p => p.CityId, Model.Citys, "", new { @class = "citydd s2" })
+                </div>
+                <div class="col-sm-3">
+                    @*@Html.LabelFor(model => model.SexId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.DropDownListFor(p => p.CategoryId, Model.Categorys, "", new { @class = "s2" })
+                </div>
+                <div class="col-sm-3">
+                    @*@Html.LabelFor(model => model.SexId, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    @Html.DropDownListFor(p => p.CategoryItemId, Model.CategoryItems, "", new { @class = "s2" })
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@section scripts {
+    
+<script>
+
+    $(".provincedd").change(function () {
+
+        var x = $(this).val();
+        var frmurl = '/StudentArea/StudentCourses/Cities?provinceId='+x;
+        debugger;
+        $.ajax({
+            url: frmurl,
+            type: 'Post',
+            success: function (cities) {
+                $('#CityId').empty();
+                debugger;
+                $(cities).each(function () {
+                    var Id = this.Id;
+                    var Name = this.Name;
+                    $('#CityId').append('<option value=' + Id + '>' + Name + '</option>');
+                })
+            }
+        });
+      
+    });
+    //$(".provincedd").change(function () {
+
+    //    var x = $(this).val();
+    //    var frmurl = '/StudentArea/StudentCourses/Cities?provinceId=' + x;
+    //    debugger;
+    //    $('.citydd').select2({
+    //        ajax: {
+    //            url: frmurl,
+    //            dataType: 'json'
+    //            // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+    //        }
+    //    });
+    //});
+    //$('.provincedd').select2({
+    //    ajax: {
+    //        url: '/StudentArea/StudentCourses/Cities?provinceId=2',
+    //        dataType: 'json'
+    //        // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+    //    }
+    //});
+    $(document).ready(function () {
+        $(".s2").select2({
+            theme: "classic",
+            allowClear: true,
+            width: '100%',
+            placeholder: 'انتخاب کنید',
+
+        });
+    });
+
+
+
+    $(document).ready(function () {
+        $(".ss").select2({
+            ajax: {
+                url: '/StudentArea/StudentCourses/Provinces',
+                dataType: 'json'
+            }
+        });
+    });
+
+
+</script>    
+}

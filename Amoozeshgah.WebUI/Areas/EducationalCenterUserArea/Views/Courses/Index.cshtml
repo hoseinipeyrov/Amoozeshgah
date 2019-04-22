@@ -1,0 +1,18 @@
+﻿@model Amoozeshgah.ViewModel.CourseDto
+
+@using Amoozeshgah.WebUI.HtmlHelpers;
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@Html.LobiPanelWithDataTable(Model, new[] { Html.StringNameFor(x => x.Name),
+                                            Html.StringNameFor(x => x.Code),
+                                            Html.StringNameFor(x => x.Capacity),
+                                            Html.StringNameFor(x => x.SessionCount),
+                                            Html.StringNameFor(x => x.Description) })
+
+@section scripts{
+    <script>
+        courcessDataTable();
+    </script>
+}

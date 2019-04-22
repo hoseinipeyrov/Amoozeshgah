@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<Amoozeshgah.Domain.Entities.Course>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>نام درس</th>
+            <th>کد درس</th>
+            <th>مدرس</th>
+            <th>شهریه</th>
+            <th>توضیح</th>
+            <th></th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Code</td>
+                <td>@item.Teacher.User.Person.FirstName</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

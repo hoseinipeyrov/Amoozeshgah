@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Amoozeshgah.Domain.Entities.Course>
+@{
+    ViewBag.Title = "کلاس های من";
+}
+
+<div class="col-md-12">
+  
+    <table class="table datatable display table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <td>نام</td>
+            <td>کد</td>
+            <td>تعداد جلسه</td>
+            <td>طول جلسه</td>
+            <td>توضیح</td>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            @foreach (var course in Model)
+            {
+                <td>@course.Name</td>
+                <td>@course.Code</td>
+                <td>@course.SessionCount</td>
+                <td>@course.SessionHour ساعت</td>
+                <td>@course.Description</td>
+
+            }
+            
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+@section scripts{
+    <script>
+        $('.datatable').DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Persian.json"
+            }
+        });
+    </script>
+    }

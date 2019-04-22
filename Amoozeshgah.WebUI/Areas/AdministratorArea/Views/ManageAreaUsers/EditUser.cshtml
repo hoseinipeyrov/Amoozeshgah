@@ -1,0 +1,77 @@
+﻿@model Amoozeshgah.ViewModel.CreateNewAreaUserDto
+
+@{
+    ViewBag.Title = "ویرایش کاربر ناحیه";
+}
+
+<div class="col-md-12">
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model=>model.Id)
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.DropDownListFor(m => m.AreaId, Model.Areas, htmlAttributes: new { @class = "form-control  bsp", multiple = "", data_max_options = "1" })
+                    @Html.ValidationMessageFor(model => model.AreaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LasttName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.EditorFor(model => model.LasttName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LasttName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NationalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.EditorFor(model => model.NationalCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NationalCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-xs-10 col-md-6">
+                    @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="ویرایش" class="btn btn-success btn-outline" />
+                    <a href="/AdministratorArea/ManageAreaUsers/Index" class="btn btn-warning btn-outline">انصراف</a>
+
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+
+    </div>
+</div>

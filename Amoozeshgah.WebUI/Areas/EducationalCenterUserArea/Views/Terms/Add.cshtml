@@ -1,0 +1,66 @@
+﻿@model Amoozeshgah.ViewModel.TermDto
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Add", "Terms", FormMethod.Post, new { onsubmit = "return SubmitForm(this)",autocomplete="off" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal col-md-12">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDateShamsi, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.StartDateShamsi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDateShamsi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDateShamsi, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.EndDateShamsi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndDateShamsi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+                <button class="btn btn-success " type="submit"><i class="fa fa-plus fa-fw"></i> <span>ذخیره</span></button>
+                <button type="reset" class="btn btn-warning" onclick="ClosePopUp()"><i class="fa fa-times fa-fw"></i> <span>انصراف</span></button>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/wwwroot/bower_components/persian-jalali-calendar/src/kamadatepicker.min.js"></script>
+
+<script>
+  
+		var customOptions = {
+			closeAfterSelect: true
+			, buttonsColor: "blue"
+			, forceFarsiDigits: false
+			, markToday: true
+			, markHolidays: true
+			, highlightSelectedDay: true
+			, sync: true
+			, gotoToday: true
+		}
+		kamaDatepicker('StartDateShamsi', customOptions);
+		kamaDatepicker('EndDateShamsi', customOptions);
+		
+</script>

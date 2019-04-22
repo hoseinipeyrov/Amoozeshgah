@@ -1,0 +1,14 @@
+﻿@model Amoozeshgah.ViewModel.LanguageDto
+
+@using Amoozeshgah.WebUI.HtmlHelpers;
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@Html.LobiPanelWithDataTable(Model, new[] { Html.StringNameFor(x => x.Name), Html.StringNameFor(x => x.NameFa) })
+
+@section scripts{
+    <script>
+        languagesDataTable();
+    </script>
+}

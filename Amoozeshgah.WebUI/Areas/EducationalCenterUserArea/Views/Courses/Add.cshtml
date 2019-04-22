@@ -1,0 +1,234 @@
+﻿@model Amoozeshgah.ViewModel.CourseDto
+@{
+    Layout = null;
+}
+<style>
+     .ltrInput {
+        direction: ltr !important;
+    }
+     .sweet-alert{
+         z-index:9999999;
+         border:solid 1px rgba(0, 0, 0, 0.3);
+         
+     }
+     .sweet-overlay{
+         z-index:9999998;
+     }
+</style>
+@using (Html.BeginForm("Add", "Courses", FormMethod.Post, new { onsubmit = "return SubmitNewCourseForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal col-md-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control ltrInput",min = 0 } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Capacity, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Capacity, new { htmlAttributes = new { @class = "form-control ltrInput", min = 0 } })
+                @Html.ValidationMessageFor(model => model.Capacity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LessonId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.LessonId, Model.Lessons, htmlAttributes: new { @class = "form-control bsp"})
+                @Html.ValidationMessageFor(model => model.LessonId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TermId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.TermId, Model.Terms, htmlAttributes: new { @class = "form-control  bsp", multiple = "", data_max_options = "1" })
+                @Html.ValidationMessageFor(model => model.TermId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TeacherId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.TeacherId, Model.Teachers, htmlAttributes: new { @class = "form-control  bsp", multiple = "", data_max_options = "1" })
+                @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.ClassroomId, Model.Classrooms, htmlAttributes: new { @class = "form-control  bsp", multiple = "", data_max_options = "1" })
+                @Html.ValidationMessageFor(model => model.ClassroomId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDateJalali, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.StartDateJalali, new { htmlAttributes = new { @class = "form-control ltrInput" } })
+                @Html.ValidationMessageFor(model => model.StartDateJalali, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class = "control-label col-md-3">طول دوره</label>
+            <div class="col-md-9">
+                <input type="text" disabled="disabled" id="LessonTotalHour" class = "form-control ltrInput" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SessionCount, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.SessionCount, new { htmlAttributes = new { @class = "form-control ltrInput", min = 0 } })
+                @Html.ValidationMessageFor(model => model.SessionCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-3"})
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control ltrInput" , min = 0 } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">شهریه هر جلسه</label>
+            <div class="col-md-9">
+                <input type="text" disabled="disabled" id="EachSessionPrice" class="form-control ltrInput" />
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+                <button class="btn btn-success " type="submit"><i class="fa fa-plus fa-fw"></i> <span>ذخیره</span></button>
+                <button type="reset" class="btn btn-warning" onclick="ClosePopUp()"><i class="fa fa-times fa-fw"></i> <span>انصراف</span></button>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/wwwroot/app_files/bootstrap-select.js"></script>
+
+
+<script src="~/wwwroot/bower_components/persian-jalali-calendar/src/kamadatepicker.min.js"></script>
+
+<script>
+
+    var customOptions = {
+        closeAfterSelect: true
+        , buttonsColor: "blue"
+        , forceFarsiDigits: false
+        , markToday: true
+        , markHolidays: true
+        , highlightSelectedDay: true
+        , sync: true
+        , gotoToday: true
+    }
+    kamaDatepicker('StartDateJalali', customOptions);
+
+</script>
+<script>
+    $("#LessonId").on('change',
+                function () {
+                    var lessonId = $(this).val();
+
+                    if (lessonId) {
+                        debugger;
+                        var totalPrice = $("#Price").val();
+
+                        if (totalPrice > 100000) {
+                            $.ajax({
+                                type: 'Post',
+                                datatype: "json",
+                                url: '/EducationalCenterUserArea/Courses/AjaxPricePerSession',
+                                data: {
+                                    id: lessonId,
+                                    totalprice: totalPrice
+                                },
+                                success: function (perHourPrice) {
+                                    $("#EachSessionPrice").val(perHourPrice)
+                                }
+                            });
+                        }
+
+
+
+                        $.ajax({
+                            type: 'Post',
+                            datatype: "json",
+                            url: '/EducationalCenterUserArea/Courses/AjaxLessonHour',
+                            data: { Id: lessonId },
+                            success: function (lesson) {
+                                $("#LessonTotalHour").val(lesson)
+                            }
+                        });
+                    }
+                });
+    $("#Price").on('blur',
+                function () {
+                    var totalprice = $(this).val();
+                    var lessonId = $("#LessonId").val();
+                    if (totalprice => 100000) {
+                      
+                        $.ajax({
+                            type: 'Post',
+                            datatype: "json",
+                            url: '/EducationalCenterUserArea/Courses/AjaxPricePerSession',
+                            data: {
+                                id: lessonId,
+                                totalprice: totalprice
+                            },
+                            success: function (perHourPrice) {
+                                $("#EachSessionPrice").val(perHourPrice)
+                            }
+                        });
+                    }
+                });
+
+
+    function SubmitNewCourseForm(form) {
+     
+        $.validator.unobtrusive.parse(form);
+        if ($(form).valid()) {
+            $.ajax({
+                type: "POST",
+                url: form.action,
+                data: $(form).serialize(),
+                success: function (data) {
+                    if (data.success) {
+                        popup.dialog('close');
+                        $.notify(data.message);
+
+                    } else {
+                        swal({
+                            title: "",
+                            text: data.message,
+                            type: "error",
+                            confirmButtonClass: "btn-warning",
+                            confirmButtonText: "سعی دوباره",
+                            closeOnConfirm: true
+                        });
+                    }
+                }
+            });
+        }
+
+        return false;
+    }
+
+    
+</script>
+
+

@@ -1,0 +1,87 @@
+﻿ @model IEnumerable<Amoozeshgah.Domain.Entities.DiscountRequest>
+@{
+    ViewBag.Title = "لیست درخواست های تخفیف";
+}
+@if (TempData["successMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       @TempData["successMessage"].ToString()
+    </div>
+}
+
+
+<div class="col-md-12">
+    <hr />
+    <a class="btn btn-success" href="/StudentArea/MyRequests/DiscountRequest">ثبت درخواست جدید</a>
+    <br /><br />
+    <table class="table">
+        <thead>
+        <tr>
+            <th>نام کلاس</th>
+            <th>ترم</th>
+            <th>تاریخ</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Course.Name</td>
+                <td>@item.Course.Term.Name</td>
+                <td>@item.CreatedDateJalali</td>
+                <td>
+                    <a class="btn btn-sm" onclick="imageDetail('@item.ImagePath')"><i class="fa fa-image"></i></a>
+                    <a class="btn btn-sm" onclick="textDetail('@item.Description.Replace("'", "")')"><i class="fa fa-file-text"></i></a>
+
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <div id="myImageModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <hr/>
+                    <img id="myModalImage" src="" class="img-responsive"/>
+                    <hr/>
+                    <a id="myaModalImage" href="" class="btn btn-primary" download="">دانلود</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myTextModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <hr/>
+                    <span id="myModalDescription"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        function imageDetail(imagePath) {
+            $("#myModalImage").attr("src", imagePath);
+            $("#myaModalImage").attr("href", imagePath);
+
+            $('#myImageModal').modal('show');
+        }
+
+        function textDetail(text) {
+            $("#myModalDescription").html(text);
+
+            $('#myTextModal').modal('show');
+        }
+    </script>
+}

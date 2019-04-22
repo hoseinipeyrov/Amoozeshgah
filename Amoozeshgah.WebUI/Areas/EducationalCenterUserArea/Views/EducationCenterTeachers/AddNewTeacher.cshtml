@@ -1,0 +1,128 @@
+﻿@model Amoozeshgah.ViewModel.AddNewTeacherDto
+
+@{
+    ViewBag.Title = "AddNewTeacher";
+}
+
+<h3>افزودن مدرس جدید</h3>
+
+
+
+<div class="col-md-12">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h4>جستجو بر اساس نام</h4>
+
+                </div>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("SearchByName", "EducationCenterTeachers", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4 required" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-4 required" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group col-md-12">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-info btn-outline btn-block">جستجو</button>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h4>جستجو بر اساس کد ملی</h4>
+
+                </div>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("SearchByNationalCode", "EducationCenterTeachers", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <br style="margin-bottom: 15px;" />
+                    <div class="form-group col-md-12">
+                        @Html.LabelFor(model => model.NationalCode, htmlAttributes: new { @class = "control-label col-md-4 required" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.NationalCode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.NationalCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group col-md-12">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-info btn-outline btn-block">جستجو</button>
+                            <br style="margin-bottom: 15px;" />
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@if (Model.EducationalCenterTeachers != null)
+{
+    using(Html.BeginForm("AddNewTeacher", "EducationCenterTeachers", FormMethod.Post))
+    {
+        <div class="col-md-12">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        موارد یافته شده
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <td>نام</td>
+                                <td>نام خانوادگی</td>
+                                <td>کد ملی</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var teacher in Model.EducationalCenterTeachers)
+                                {
+                                    <td>@teacher.FirstName</td>
+                                    <td>@teacher.LastName</td>
+                                    <td>@teacher.NationalCode</td>
+                                    <td><button type="submit" name="NationalCode" id="NationalCode" value="@teacher.NationalCode" class="btn btn-primary">افزودن</button></td>
+                                }
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+}

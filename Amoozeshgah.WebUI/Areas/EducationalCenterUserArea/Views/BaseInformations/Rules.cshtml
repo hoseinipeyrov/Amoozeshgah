@@ -1,0 +1,92 @@
+﻿@model Amoozeshgah.ViewModel.EducationalCenterRuleDto
+@{
+    ViewBag.Title = "قوانین";
+    Layout = "~/Views/Shared/_LayoutTableLess.cshtml";
+}
+
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<div class="col-md-12 ruleBody">
+
+    @using (Html.BeginForm("Rules", "BaseInformations", FormMethod.Post, new { id = "frm" }))
+    {
+
+        <div class="form-group col-xs-12">
+            @Html.Label(@Model.EducationalCenterName, new { @class = "control-label col-xs-12" })
+            <div class="col-xs-12">
+                @Html.TextAreaFor(model => model.Rule, new { @class = "form-control", @cols = 80, @rows = 20 })
+
+                @Html.ValidationMessageFor(m => m.Rule, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+    <script>
+        $(document).ready(function () {
+            var SaveRuleButton = function () {
+                var ui = $.summernote.ui;
+
+                // create button
+                var button = ui.button({
+                    contents: '<i class="fa fa-check" style="color:#2bd62b"/> <b style="color:#2bd62b">ذخیره</b>',
+                    click: function () {
+                    
+                        var form = $('form[id="frm"]');
+                        $.ajax({
+                            type: "POST",
+                            url: 'Rules/',
+                            data: $(form).serialize(),
+                            success: function (data) {
+                                if (data.success) {
+                                    swal({
+                                        title: "ذخیره قوانین",
+                                        text: data.message,
+                                        type: "success",
+                                        confirmButtonClass: "btn-success",
+                                        confirmButtonText: "باشه",
+                                        closeOnConfirm: true
+                                    });
+
+                                } else {
+                                    swal({
+                                        title: "خطا",
+                                        text: data.message,
+                                        type: "error",
+                                        confirmButtonClass: "btn-warning",
+                                        confirmButtonText: "سعی دوباره",
+                                        closeOnConfirm: true
+                                    });
+                                }
+                            }
+                        });
+
+
+                    }
+                });
+
+                return button.render(); // return button as jquery object
+            };
+
+            $('#Rule').summernote({
+                height: 400,
+                placeholder: 'قوانین آموزشگاه را وارد نمایید',
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['mybutton', ['saveRule']]
+                ],
+
+                buttons: {
+                    saveRule: SaveRuleButton
+                }
+            });
+
+        });
+    </script>
+
+}

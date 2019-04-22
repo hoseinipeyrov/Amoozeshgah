@@ -1,0 +1,150 @@
+﻿@using Microsoft.Ajax.Utilities
+@model Amoozeshgah.ViewModel.DeterminationLevelResponseDto
+
+@{
+    ViewBag.Title = "تعیین وقت تعیین سطح";
+    Layout = "~/Views/Shared/_LayoutTableLess.cshtml";
+}
+<link href="~/wwwroot/bower_components/persian-jalali-calendar/style/kamadatepicker.min.css" rel="stylesheet" />
+
+<link href="~/wwwroot/bower_components/Time-Selector-Picktim/css/picktim.css" rel="stylesheet" />
+<style>
+    .white-readonly {
+        background-color: white !important;
+    }
+
+    .ltrInput {
+        direction: ltr !important;
+    }
+</style>
+<div class="col-md-12">
+    @using (Html.BeginForm("SetTime", "ReceivedRequests", FormMethod.Post, new { onsubmit = "return SubmitRequet(this)" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.Id)
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">مشخصات</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" disabled="disabled" value="@Model.StudentFullName" />
+                    &nbsp;
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">تلفن تماس</label>
+                <div class="col-md-5">
+                    
+                    <input type="text" class="form-control ltrInput" disabled="disabled" value="@Model.PhoneNo" />
+                    &nbsp;
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">زمان پیشنهادی</label>
+                <div class="col-md-5">
+                   
+                    <input type="text" class="form-control" disabled="disabled" value="@Model.StudentPereferDate"/>
+                    &nbsp;
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Day, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.Day, new { htmlAttributes = new { @class = "form-control ltrInput white-readonly", @readonly = "readonly" } })
+                    &nbsp; @Html.ValidationMessageFor(model => model.Day, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">ساعت</label>
+                <div class="col-md-5">
+                    <div id="timepicker"></div>
+                    &nbsp; @Html.ValidationMessageFor(model => model.Hour, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="تعیین وقت" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/wwwroot/bower_components/persian-jalali-calendar/src/kamadatepicker.min.js"></script>
+    <script>
+
+        var customOptions = {
+            closeAfterSelect: true
+            , buttonsColor: "blue"
+            , forceFarsiDigits: false
+            , markToday: true
+            , markHolidays: true
+            , highlightSelectedDay: true
+            , sync: true
+            , gotoToday: true
+        }
+        kamaDatepicker('Day', customOptions);
+    </script>
+    <script src="~/wwwroot/bower_components/Time-Selector-Picktim/js/SetHour.js"></script>
+ 
+  
+        @if(@Model.Hour.IsNullOrWhiteSpace()) {
+            @Html.Raw("<script> $('#timepicker').picktim({ mode: 'h24' }); </script>")
+        } else {
+            @Html.Raw("<script> $('#timepicker').picktim({ mode: 'h24',defaultValue: '"+ Model.Hour + "' }); </script>")
+            
+        }
+<script>
+    $("#Hour").attr("placeholder", "@Model.Hour");
+</script>
+   
+    <script>
+        function SubmitRequet(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+                            
+                            swal({
+                                    title: "ذخیره",
+                                    text: "ذخیره موفق",
+                                    type: "success",
+                                    showCancelButton: false,
+                                    confirmButtonClass: "btn-success",
+                                    confirmButtonText: "باشه",
+                                    closeOnConfirm: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location = "/EducationalCenterUserArea/ReceivedRequests/index";
+                                    } else {
+                                        window.location = "/EducationalCenterUserArea/ReceivedRequests/index";
+                                    }
+                                });
+                        } else {
+                            swal({
+                                title: "خطا",
+                                text: data.message,
+                                type: "error",
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "سعی دوباره",
+                                closeOnConfirm: true
+                            });
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+    </script>
+}

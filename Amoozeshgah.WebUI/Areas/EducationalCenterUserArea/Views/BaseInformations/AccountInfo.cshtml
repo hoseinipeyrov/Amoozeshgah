@@ -1,0 +1,112 @@
+﻿@model Amoozeshgah.ViewModel.AccountInformationDto
+
+@{
+    ViewBag.Title = "مجوز ها";
+}
+
+<div class="col-md-12">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>اطلاعات حساب</h4>
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-md-12">
+                        @if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success  alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>توجه!</strong>
+
+                                @TempData["Message"]
+
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AccountOwnerFirstName, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.AccountOwnerFirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AccountOwnerFirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AccountOwnerLastName, htmlAttributes: new { @class = "control-label col-md-5 required",style= "font-size: 13px;" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.AccountOwnerLastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AccountOwnerLastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.BankId, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(m => m.BankId,Model.Banks, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.BankId, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.BrancheCode, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.BrancheCode, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrancheCode, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.BrancheName, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.BrancheName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrancheName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                        <div class="col-md-7">
+                            @Html.TextBoxFor(m => m.AccountNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.IdPay, htmlAttributes: new { @class = "control-label col-md-4 required" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.IdPay, new { @class = "form-control ltrInput" })
+                            @Html.ValidationMessageFor(model => model.IdPay, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <br /><hr />
+                        <div class="col-md-offset-4 col-md-4">
+                            <input type="submit" value="ذخیره" class="btn btn-outline btn-success btn-block" />
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+@section scripts
+{
+    
+    <script src="~/wwwroot/bower_components/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+    
+    <script>
+        $('#IdPay').inputmask({
+            mask: 'IR99-9999-9999-9999-9999-9999-99'
+        })
+    </script>
+}

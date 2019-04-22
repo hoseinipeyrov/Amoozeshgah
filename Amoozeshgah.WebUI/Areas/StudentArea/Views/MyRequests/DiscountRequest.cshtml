@@ -1,0 +1,121 @@
+﻿@model Amoozeshgah.ViewModel.DiscountRequestDto
+@{
+    ViewBag.Title = "درخواست تخفیف";
+    Layout = "~/Views/Shared/_LayoutTableLess.cshtml";
+}
+<link href="~/wwwroot/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
+<link href="~/wwwroot/bower_components/bootstrap-file-upload/dist/css/file-upload.css" rel="stylesheet" />
+<div class="col-md-12">
+    @using (Html.BeginForm("DiscountRequest", "MyRequests", FormMethod.Post, new {enctype = "multipart/form-data" }))
+    {
+        <div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>توجه</strong> حداکثر حجم قابل آپلود 200 کیلوبایت است
+        </div>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    @Html.DropDownListFor(m => m.CourseId, Model.Courses,"انتخاب کنید", new {@class="form-control"})
+                    &nbsp;   @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.Document, new { @class = "control-label col-md-2" })
+                <div class="col-md-3">
+                    <label class="file-upload btn btn-default btn-block">
+                        انتخاب <input type="file" id="Document" name="Document" />
+                    </label>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+           <hr/>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="درخواست تخفیف" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+   
+<script src="~/wwwroot/bower_components/summernote/dist/summernote.min.js"></script>
+<script src="~/wwwroot/bower_components/summernote/dist/lang/summernote-fa-IR.js"></script>
+    <script src="~/wwwroot/bower_components/bootstrap-file-upload/dist/js/file-upload.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.file-upload').file_upload();
+        });
+    </script>
+    <script>
+       $('#Description').summernote({
+           lang: 'fa-IR',
+           height: 300,
+           placeholder: 'توضیحات',
+           toolbar: [
+               ['style', ['bold', 'italic', 'underline', 'clear']],
+               ['fontsize', ['fontsize']],
+               ['para', ['ul', 'ol']]
+           ]
+       });
+
+
+
+        function SubmitRequet(form) {
+            $.validator.unobtrusive.parse(form);
+            debugger;
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success) {
+
+                            swal({
+                                    title: "ذخیره",
+                                    text: data.message,
+                                    type: "success",
+                                    showCancelButton: false,
+                                    confirmButtonClass: "btn-success",
+                                    confirmButtonText: "باشه",
+                                    closeOnConfirm: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.location = "index";
+                                    } else {
+                                        window.location = "index";
+                                    }
+                                });
+                        } else {
+                            swal({
+                                title: "خطا",
+                                text: data.message,
+                                type: "error",
+                                confirmButtonClass: "btn-warning",
+                                confirmButtonText: "سعی دوباره",
+                                closeOnConfirm: true
+                            });
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+    </script>
+}

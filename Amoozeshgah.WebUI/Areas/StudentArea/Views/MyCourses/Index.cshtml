@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Amoozeshgah.ViewModel.MyCoursesDto>
+@{
+    ViewBag.Title = "سوابق تحصیلی";
+}
+<div class="col-md-12">
+    <table class="table dtTable dataTable">
+        <thead>
+            <tr>
+                <th>
+                    کلاس
+                </th>
+                <th>
+                    کد کلاس
+                </th>
+                <th>
+                    تاریخ شروع
+                </th>
+                <th>
+                    توضیحات
+                </th>
+                <th>
+                    نام مرکز آموزشی
+                </th>
+                <th>
+                    نام درس
+                </th>
+                <th>
+                    نام رشته
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CourseName</td>
+                    <td>@item.CourseCode</td>
+                    <td>@item.CourseStartDate</td>
+                    <td>@item.CourseDescription</td>
+                    <td>@item.EducationalCenterName</td>
+                    <td>@item.LessonName</td>
+                    <td>@item.FieldName</td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+

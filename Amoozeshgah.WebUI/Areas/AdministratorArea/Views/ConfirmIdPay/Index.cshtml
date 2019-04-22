@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Amoozeshgah.ViewModel.AreaConfirmIdPayDto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationalCenterCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationalCenterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EducationalCenterCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPayStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdPay)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationalCenterCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationalCenterName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EducationalCenterCategory)
+                </td>
+                <td>
+                    @Html.Raw(@item.IdPayStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPay)
+                </td>
+                <td>
+                    <div class='btn-group' role='group' aria-label='Basic'>
+                       @Html.Raw(@item.IdPayButtons)
+                    </div>
+                </td>
+            </tr>
+        }
+        
+        
+
+    </table>
+}

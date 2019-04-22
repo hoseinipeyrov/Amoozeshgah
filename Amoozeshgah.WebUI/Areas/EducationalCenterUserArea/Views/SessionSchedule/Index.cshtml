@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Amoozeshgah.Domain.Entities.SessionSchedule>
+
+@{
+    ViewBag.Title = "جلسات";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">@ViewBag.CourseName</div>
+    <div class="panel-body">
+        <p>
+            <a class="btn btn-success btn-outline" href="/EducationalCenterUserArea/SessionSchedule/AddNewSession/@ViewBag.CourseId">افزودن جلسه جدید</a>
+        </p>
+        <table class="table dataTable">
+            <thead>
+            <tr>
+
+                <th>
+                    @*@Html.DisplayNameFor(model => model.StartDayJalali)*@
+                    تاریخ شروع
+                </th>
+
+                <th>
+                    @*@Html.DisplayNameFor(model => model.StartTimeJalali)*@
+                    ساعت شروع
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.StartDayName)*@
+                    روز هفته
+                </th>
+
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Course.Name)*@
+                    نام درس
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Classroom.Name)*@
+                    کلاس
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDayJalali)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTimeJalali)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDayName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Classroom.Name)
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" onclick="return confirm('مطمئن هستید؟')" href="/EducationalCenterUserArea/SessionSchedule/DeleteSession/@item.Id"><i class="fa fa-fw fa-eraser"></i>حذف</a>
+
+                    </td>
+                </tr>
+            }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

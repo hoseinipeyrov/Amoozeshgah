@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Amoozeshgah.Domain</RootNamespace>
+    <AssemblyName>Amoozeshgah.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\NationalCodeAttribute.cs" />
+    <Compile Include="ComplexTypes\FullName.cs" />
+    <Compile Include="Entities\AccountInformation.cs" />
+    <Compile Include="Entities\ActionMethod.cs" />
+    <Compile Include="Entities\Area.cs" />
+    <Compile Include="Entities\AuditEntry.cs" />
+    <Compile Include="Entities\AuditEntryProperty.cs" />
+    <Compile Include="Entities\Bank.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Entities\Classroom.cs" />
+    <Compile Include="Entities\ClassroomType.cs" />
+    <Compile Include="Entities\CourseHoldingType.cs" />
+    <Compile Include="Entities\CourseJoinStudent.cs" />
+    <Compile Include="Entities\RefundRequest.cs" />
+    <Compile Include="Entities\DiscountRequest.cs" />
+    <Compile Include="Entities\EducationalCenterJoinTeacher.cs" />
+    <Compile Include="Entities\EducationalCenterUser.cs" />
+    <Compile Include="Entities\EducationDegree.cs" />
+    <Compile Include="Entities\EstateStatus.cs" />
+    <Compile Include="Entities\LanguageDeterminationLevelRequest.cs" />
+    <Compile Include="Entities\MaritalStatus.cs" />
+    <Compile Include="Entities\MaximumTuition.cs" />
+    <Compile Include="Entities\MilitaryStatus.cs" />
+    <Compile Include="Entities\MinistryRule.cs" />
+    <Compile Include="Entities\Religion.cs" />
+    <Compile Include="Entities\Term.cs" />
+    <Compile Include="Entities\SessionSchedule.cs" />
+    <Compile Include="Entities\CourseStudent.cs" />
+    <Compile Include="Entities\EducationalCenter.cs" />
+    <Compile Include="Entities\Province.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\SacrificialLevel.cs" />
+    <Compile Include="Entities\Site.cs" />
+    <Compile Include="Entities\PageTrack.cs" />
+    <Compile Include="Entities\CertificateType.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\DepartmentType.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\CategoryItem.cs" />
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Entities\Field.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\UserRole.cs" />
+    <Compile Include="IBaseEntity.cs" />
+    <Compile Include="Entities\Lesson.cs" />
+    <Compile Include="Entities\LessonLevel.cs" />
+    <Compile Include="Entities\Menu.cs" />
+    <Compile Include="Entities\SiteMenuItem.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\RecruitmentType.cs" />
+    <Compile Include="Entities\Sex.cs" />
+    <Compile Include="Entities\Shift.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Amoozeshgah.Common\Amoozeshgah.Common.csproj">
+      <Project>{04CCA878-00D4-4C10-8B93-FCBF436E2164}</Project>
+      <Name>Amoozeshgah.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

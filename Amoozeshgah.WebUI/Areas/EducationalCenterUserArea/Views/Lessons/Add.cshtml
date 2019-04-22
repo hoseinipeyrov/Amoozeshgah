@@ -1,0 +1,73 @@
+﻿@model Amoozeshgah.ViewModel.LessonDto
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("Add", "Lessons", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal col-md-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FieldId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.FieldId, Model.Fields, htmlAttributes: new { @class = "form-control bsp" })
+                @Html.ValidationMessageFor(model => model.FieldId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LessonLevelId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.LessonLevelId, Model.LessonLevels, htmlAttributes: new { @class = "form-control bsp", multiple = "", data_max_options = "1" })
+                @Html.ValidationMessageFor(model => model.LessonLevelId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalHours, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.TotalHours, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalHours, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrerequirementId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(m => m.PrerequirementId, Model.Prerequirements, htmlAttributes: new { @class = "form-control bsp", multiple = "", data_max_options = "1" })
+                @Html.ValidationMessageFor(model => model.PrerequirementId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-9 col-md-offset-3">
+                <button class="btn btn-success " type="submit"><i class="fa fa-plus fa-fw"></i> <span>ذخیره</span></button>
+                <button type="reset" class="btn btn-warning" onclick="ClosePopUp()"><i class="fa fa-times fa-fw"></i> <span>انصراف</span></button>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/wwwroot/app_files/bootstrap-select.js"></script>

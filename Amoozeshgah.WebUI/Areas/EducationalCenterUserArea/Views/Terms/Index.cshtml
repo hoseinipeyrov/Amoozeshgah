@@ -1,0 +1,11 @@
+﻿@model Amoozeshgah.ViewModel.TermDto
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+@Html.LobiPanelWithDataTable(Model, new[] { Html.StringNameFor(x => x.Code), Html.StringNameFor(x => x.Name), Html.StringNameFor(x => x.StartDateShamsi), Html.StringNameFor(x => x.EndDateShamsi) })
+
+@section scripts{
+    <script>
+        termsDataTable();
+    </script>
+}

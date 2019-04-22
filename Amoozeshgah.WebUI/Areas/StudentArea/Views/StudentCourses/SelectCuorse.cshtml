@@ -1,0 +1,25 @@
+﻿@model Amoozeshgah.ViewModel.SelectNewCourseDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectCuorse</title>
+</head>
+<body>
+  @using (Html.BeginForm())
+  {
+      var x = Model.Provinces;
+      @Html.DropDownList("ProvinceId", x, htmlAttributes: new { @class = "form-control" })
+    foreach (var item in Model.Provinces)
+    {
+        @item.Value
+    }
+    <input type="submit" value="sun" />
+  }
+</body>
+</html>

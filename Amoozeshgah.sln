@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Core", "Amoozeshgah.Core\Amoozeshgah.Core.csproj", "{F3184598-23A3-496D-B63B-521F55CF60DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.ViewModel", "Amoozeshgah.ViewModel\Amoozeshgah.ViewModel.csproj", "{D14496ED-EF18-417D-A497-F9E869BDE905}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Services", "Amoozeshgah.Services\Amoozeshgah.Services.csproj", "{9D798F51-B896-49EB-8732-7C911DB58717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.WebUI", "Amoozeshgah.WebUI\Amoozeshgah.WebUI.csproj", "{83E2292F-5E8C-4A8D-8E5F-E4D06C3ED375}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Common", "Amoozeshgah.Common\Amoozeshgah.Common.csproj", "{04CCA878-00D4-4C10-8B93-FCBF436E2164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Domain", "Amoozeshgah.Domain\Amoozeshgah.Domain.csproj", "{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Test", "Amoozeshgah.Test\Amoozeshgah.Test.csproj", "{5831DC70-8688-4041-A8A1-F22933E19A12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.WebReferences", "Amoozeshgah.WebReferences\Amoozeshgah.WebReferences.csproj", "{2B8BBCAE-77E9-4292-8D73-C2E42BEFBDB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amoozeshgah.Resource", "Amoozeshgah.Resource\Amoozeshgah.Resource.csproj", "{A95A2D06-0D40-44CD-A13D-AFA76679193B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3184598-23A3-496D-B63B-521F55CF60DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3184598-23A3-496D-B63B-521F55CF60DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3184598-23A3-496D-B63B-521F55CF60DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3184598-23A3-496D-B63B-521F55CF60DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D14496ED-EF18-417D-A497-F9E869BDE905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14496ED-EF18-417D-A497-F9E869BDE905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14496ED-EF18-417D-A497-F9E869BDE905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14496ED-EF18-417D-A497-F9E869BDE905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D798F51-B896-49EB-8732-7C911DB58717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D798F51-B896-49EB-8732-7C911DB58717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D798F51-B896-49EB-8732-7C911DB58717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D798F51-B896-49EB-8732-7C911DB58717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E2292F-5E8C-4A8D-8E5F-E4D06C3ED375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E2292F-5E8C-4A8D-8E5F-E4D06C3ED375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E2292F-5E8C-4A8D-8E5F-E4D06C3ED375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E2292F-5E8C-4A8D-8E5F-E4D06C3ED375}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04CCA878-00D4-4C10-8B93-FCBF436E2164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04CCA878-00D4-4C10-8B93-FCBF436E2164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04CCA878-00D4-4C10-8B93-FCBF436E2164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04CCA878-00D4-4C10-8B93-FCBF436E2164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0AACB3-D97A-42C4-80BC-AD2D05C3AEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5831DC70-8688-4041-A8A1-F22933E19A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5831DC70-8688-4041-A8A1-F22933E19A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5831DC70-8688-4041-A8A1-F22933E19A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5831DC70-8688-4041-A8A1-F22933E19A12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8BBCAE-77E9-4292-8D73-C2E42BEFBDB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8BBCAE-77E9-4292-8D73-C2E42BEFBDB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8BBCAE-77E9-4292-8D73-C2E42BEFBDB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8BBCAE-77E9-4292-8D73-C2E42BEFBDB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A95A2D06-0D40-44CD-A13D-AFA76679193B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A95A2D06-0D40-44CD-A13D-AFA76679193B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A95A2D06-0D40-44CD-A13D-AFA76679193B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A95A2D06-0D40-44CD-A13D-AFA76679193B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.1.145:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Amoozeshgah.Common\\Amoozeshgah.Common.csproj
+		SccProjectName1 = Amoozeshgah.Common
+		SccLocalPath1 = Amoozeshgah.Common
+		SccProjectUniqueName2 = Amoozeshgah.Core\\Amoozeshgah.Core.csproj
+		SccProjectName2 = Amoozeshgah.Core
+		SccLocalPath2 = Amoozeshgah.Core
+		SccProjectUniqueName3 = Amoozeshgah.Domain\\Amoozeshgah.Domain.csproj
+		SccProjectName3 = Amoozeshgah.Domain
+		SccLocalPath3 = Amoozeshgah.Domain
+		SccProjectUniqueName4 = Amoozeshgah.Services\\Amoozeshgah.Services.csproj
+		SccProjectName4 = Amoozeshgah.Services
+		SccLocalPath4 = Amoozeshgah.Services
+		SccProjectUniqueName5 = Amoozeshgah.Test\\Amoozeshgah.Test.csproj
+		SccProjectName5 = Amoozeshgah.Test
+		SccLocalPath5 = Amoozeshgah.Test
+		SccProjectUniqueName6 = Amoozeshgah.ViewModel\\Amoozeshgah.ViewModel.csproj
+		SccProjectName6 = Amoozeshgah.ViewModel
+		SccLocalPath6 = Amoozeshgah.ViewModel
+		SccProjectUniqueName7 = Amoozeshgah.WebReferences\\Amoozeshgah.WebReferences.csproj
+		SccProjectName7 = Amoozeshgah.WebReferences
+		SccLocalPath7 = Amoozeshgah.WebReferences
+		SccProjectUniqueName8 = Amoozeshgah.WebUI\\Amoozeshgah.WebUI.csproj
+		SccProjectName8 = Amoozeshgah.WebUI
+		SccLocalPath8 = Amoozeshgah.WebUI
+		SccProjectUniqueName9 = Amoozeshgah.Resource\\Amoozeshgah.Resource.csproj
+		SccProjectName9 = Amoozeshgah.Resource
+		SccLocalPath9 = Amoozeshgah.Resource
+	EndGlobalSection
+EndGlobal

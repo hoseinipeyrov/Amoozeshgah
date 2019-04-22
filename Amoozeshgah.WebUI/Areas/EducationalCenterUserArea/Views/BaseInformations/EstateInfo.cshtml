@@ -1,0 +1,172 @@
+﻿@model Amoozeshgah.ViewModel.EstateDto
+
+@{
+    ViewBag.Title = "EstateInfo";
+}
+<div class="col-md-12">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="panel panel-default lobiPanel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>اطلاعات ملک</h4>
+                        
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-md-12">
+                        @if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success  alert-dismissible">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>توجه!</strong>
+
+                                @TempData["Message"]
+
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HavePrayerRoom, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HavePrayerRoom, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HavePrayerRoom, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveLibrary, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveLibrary, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveLibrary, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.MonthlyRentCost, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.MonthlyRentCost, new {htmlAttributes = new {@class = "form-control", placeholder = "اجاره ماهیانه"}})
+                            @Html.ValidationMessageFor(model => model.MonthlyRentCost, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HavePlaceConfirmation, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HavePlaceConfirmation, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HavePlaceConfirmation, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.EstateStatusId, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.DropDownListFor(model => model.EstateStatusId, Model.EstateStatus, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.EstateStatusId, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AreaArenaMeter, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.AreaArenaMeter, new {htmlAttributes = new {@class = "form-control", placeholder = "متراژ عرصه"}})
+                            @Html.ValidationMessageFor(model => model.AreaArenaMeter, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.AreaLordMeter, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.AreaLordMeter, new {htmlAttributes = new {@class = "form-control", placeholder = "متراژ اعیان"}})
+                            @Html.ValidationMessageFor(model => model.AreaLordMeter, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.FloorCount, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.FloorCount, new {htmlAttributes = new {@class = "form-control", placeholder = "تعداد طبقات"}})
+                            @Html.ValidationMessageFor(model => model.FloorCount, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.ApplicationType, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.ApplicationType, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.ApplicationType, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveLanguageLaborator, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveLanguageLaborator, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveLanguageLaborator, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveSmartSystem, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveSmartSystem, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveSmartSystem, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveSite, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveSite, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveSite, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveAdvisorRoom, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveAdvisorRoom, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveAdvisorRoom, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveDedicatedBuffet, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveDedicatedBuffet, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveDedicatedBuffet, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveDedicatedDrinking, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveDedicatedDrinking, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveDedicatedDrinking, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.HaveWarmWc, htmlAttributes: new {@class = "control-label col-md-5 required"})
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(m => m.HaveWarmWc, new {@class = "form-control bsp"})
+                            @Html.ValidationMessageFor(model => model.HaveWarmWc, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group col-md-12">
+                        <br/><hr/>
+                        <div class="col-md-offset-4 col-md-4">
+                            <input type="submit" value="ذخیره" class="btn btn-outline btn-success btn-block"/>
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Picktim: Time Picker Plugin Example</title>
+    <link href="~/wwwroot/bower_components/Time-Selector-Picktim/css/picktim.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+    <div class="timepicker" id="timepicker"></div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="~/wwwroot/bower_components/Time-Selector-Picktim/js/picktim.js"></script>
+<script>
+    $(".timepicker").picktim({ mode: 'h24' });
+</script>
+</body>
+</html>

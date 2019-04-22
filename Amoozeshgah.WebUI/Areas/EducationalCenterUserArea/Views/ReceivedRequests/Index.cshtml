@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "درخواست های تعیین سطح";
+}
+<style>
+    #DataTables_Table_0_filter {
+        direction: rtl !important;
+        text-align: left;
+    }
+</style>
+<div class="col-md-12">
+
+    <table class="table datatable display table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <th>نام</th>
+            <th>تاریخ پیشنهادی</th>
+            <th>وضعیت</th>
+            <th>تاریخ تعیینی</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- dialog body -->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <span id="myModalbody">تعیین وقت تعیین سطح</span>
+                    <hr/>
+                    <span id="studentRequestDetails"></span>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section scripts
+{
+
+    <script>
+
+
+        $('.datatable').DataTable({
+            bFilter: true,
+            bInfo: false,
+            ajax: {
+                url: "/EducationalCenterUserArea/ReceivedRequests/GetAll",
+                type: "GET",
+                datatype: "json"
+            },
+            columns: [
+                { data: "FullName" },
+                { data: "PreferJalaliDate" },
+                { data: "Status" },
+                { data: "SetJalaliDate" },
+                {
+                    data: "Id",
+                    render: function(id) {
+                        return `<div class='btn-group'><a class='btn btn-default btn-sm' href='/EducationalCenterUserArea/ReceivedRequests/SetTime/${id}'><i class='fa fa-fw fa-clock-o' aria-hidden='true'></i></a>`;
+                    },
+                    orderable: false,
+                    width: "100px"
+                }
+            ],
+            dom: "Bfrtip",
+            buttons: [
+                {
+                    extend: 'excel',
+                    text: '<i class="glyphicon glyphicon-download-alt" aria-hidden="true"></i> فایل اکسل',
+                    className: "btn btn-outline btn-info",
+                    exportOptions: { columns: 'th:not(:last-child)' }
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="glyphicon glyphicon-print" aria-hidden="true"></i> چاپ',
+                    className: "btn btn-outline btn-primary",
+                    exportOptions: { columns: 'th:not(:last-child)' }
+                }
+            ],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Persian.json"
+            }
+        });
+
+
+        function SetDetectionLevelTime(id) {
+
+            if (id > 0) {
+                $.ajax({
+                    type: 'Post',
+                    datatype: "json",
+                    url: '/EducationalCenterUserArea/ReceivedRequests/StudentRequestDetails/',
+                    data: { id: id },
+                    success: function(detail) {
+                        $("#studentRequestDetails").html(detail);
+                        $('#myModal').modal('show');
+                    },
+                    error: function(e) {
+                        alert("error");
+                    }
+                });
+            }
+
+        }
+
+
+    </script>
+}

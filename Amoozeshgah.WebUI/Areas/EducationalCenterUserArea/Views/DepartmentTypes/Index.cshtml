@@ -1,0 +1,13 @@
+﻿@model Amoozeshgah.ViewModel.DepartmentTypeDto
+
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@Html.LobiPanelWithDataTable(Model, new[] { Html.StringNameFor(x => x.Name), Html.StringNameFor(x => x.NameFa), Html.StringNameFor(x => x.Description) })
+
+@section scripts{
+    <script>
+        departmentTypesDataTable();
+    </script>
+}

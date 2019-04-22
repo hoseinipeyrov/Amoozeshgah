@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var p = ViewBag.person as Amoozeshgah.Domain.Entities.Person;
+
+}
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">اطلاعات شخصی</a></li>
+    <li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">ویرایش اطلاعات</a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="Section1">
+        <div class="row">
+            <div class="col-sm-5 col-md-4" @*style="border-left:1px solid #e4e4e4"*@>
+                <div class="panel  panel-default lobiPanel" id="user-properties" data-inner-id="user-properties">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            مشخصات
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="stack twisted">
+                            <img class="center-block" src="~/wwwroot/images/test.jpg" />
+                        </div>
+                        <hr />
+                        <table class="table table-condensed table-hover">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        شماره پرسنلی:
+                                    </td>
+                                    <td>
+                                        5
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        نام پدر:
+                                    </td>
+                                    <td>
+                                        علي اصغر
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        کد ملی:
+                                    </td>
+                                    <td>
+                                        4590680561
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        شماره شناسنامه:
+                                    </td>
+                                    <td>
+                                        123
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        تاریخ تولد:
+                                    </td>
+                                    <td>
+                                        1366/04/02
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-7 col-md-8">
+                <div class="panel panel-default lobiPanel" id="user-properties-details" data-inner-id="user-properties-details">
+                    <div class="panel-heading">
+                        <div class="panel-title">سایر اطلاعات شما</div>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="column-left">
+                                        تلفن منزل:
+                                    </td>
+                                    <td class="column-right">
+                                        77211859
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        همراه:
+                                    </td>
+                                    <td class="column-right">
+                                        09122757316
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        پست الکترونیک:
+                                    </td>
+                                    <td class="column-right">
+                                        karimi@yahoo.com
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        آدرس:
+                                    </td>
+                                    <td class="column-right">
+                                        گوهردشت
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        تحصیلات:
+                                    </td>
+                                    <td class="column-right">
+                                        ليسانس
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        گرایش:
+                                    </td>
+                                    <td class="column-right">
+                                        زبان و ادبيات انگليسي
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        تابعیت:
+                                    </td>
+                                    <td class="column-right">
+                                        ايران
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        گروه:
+                                    </td>
+                                    <td class="column-right">
+                                        استاد زبان انگليسي
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        شروع قرارداد:
+                                    </td>
+                                    <td class="column-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        پایان قرارداد:
+                                    </td>
+                                    <td class="column-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        سوایق کاری:
+                                    </td>
+                                    <td class="column-right">
+                                        موسسات قلم نوين / ايرانا / سوگند / مدرسه ملي زبان
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        شماره حساب:
+                                    </td>
+                                    <td class="column-right"></td>
+                                </tr>
+                                <tr>
+                                    <td class="column-left">
+                                        شماره کارت:
+                                    </td>
+                                    <td class="column-right"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="Section2">
+        <h3>ویرایش اطلاعات</h3>
+        <p>
+            در حال حاضر ویرایش اطلاعات فعال نمی باشد
+        </p>
+    </div>
+</div>

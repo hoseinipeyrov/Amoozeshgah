@@ -1,0 +1,339 @@
+﻿@model Amoozeshgah.ViewModel.SearchCourseDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>جستجوی درس</title>
+    <link href="~/wwwroot/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/Content/vazir-font.css" rel="stylesheet" />
+    <link href="~/wwwroot/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/bower_components/data-tables/datatables.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/bower_components/data-tables/DataTables-1.10.16/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <link href="~/wwwroot/Content/sb-admin-2.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Vazir;
+        }
+
+        .form-horizontal .control-label {
+            text-align: right;
+        }
+
+        .adineh {
+            margin-top: 22px;
+        }
+    </style>
+</head>
+<body>
+    <center><img class="img-responsive" src="~/wwwroot/images/course-register-title.png" /></center>
+    @using (Html.BeginForm("SearchCourses", "ChooseCourses", FormMethod.Post, new { onsubmit = "return SearchCourses(this)" }))
+    {
+        <div class="container">
+            <div class="row">
+                @{
+                    var isUserLoggedIn = (HttpContext.Current.User != null) &&
+                                         HttpContext.Current.User.Identity.IsAuthenticated;
+                    if (!isUserLoggedIn)
+                    {
+                        <div class="alert alert-info">
+                            <strong>توجه</strong>
+
+                            برای انتخاب کلاس در سامانه
+                            <a href="/Account/RegisterNewStudent" class="text-success"><strong>ثبت نام</strong></a>
+                            نمایید و یا
+                            <a href="/Account/StudentSignIn" class="text-success"><strong>وارد</strong></a>
+                            شوید
+
+                        </div>
+                    }
+                }
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><i style="cursor: pointer" class="fa fa-fw fa-sort" data-toggle="collapse" data-target=".demo"></i> جستجوی کلاس</div>
+                    <div class="panel-body demo collapse in">
+                        <div class="form-horizontal">
+                            <div class="form-group col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.ProvinceId, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.DropDownListFor(m => m.ProvinceId, Model.Provinces, "انتخاب کنید", new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.ProvinceId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.AreaId, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.DropDownListFor(m => m.AreaId, Model.Areas, "انتخاب کنید", new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.AreaId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.SexId, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.DropDownListFor(m => m.SexId, Model.Sexes, "انتخاب کنید", new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.SexId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.EducationalCenterCategory, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.DropDownListFor(m => m.EducationalCenterCategory, Model.EducationalCenterCategories, "انتخاب کنید", new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.EducationalCenterCategory, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.EducationalCenterName, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.TextBoxFor(m => m.EducationalCenterName, new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.EducationalCenterName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.EducationalCenterCode, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.TextBoxFor(m => m.EducationalCenterCode, new { @class = "form-control", type = "number" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.EducationalCenterCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.CourseName, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.TextBoxFor(m => m.CourseName, new { @class = "form-control" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.CourseName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group   col-lg-3 col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(m => m.CourseCode, new { @class = "control-label col-xs-12" })
+                                <div class="col-xs-12">
+                                    @Html.TextBoxFor(m => m.CourseCode, new { @class = "form-control", type = "number" })
+                                    &nbsp; @Html.ValidationMessageFor(m => m.CourseCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-footer demo collapse in">
+                        <center>
+                            <button class="btn btn-info btn-outline"><i class="fa fa-fw fa-search"></i>جستجو</button>
+                        </center>
+                    </div>
+                </div>
+                <hr />
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><i style="cursor: pointer" class="fa fa-fw fa-sort" data-toggle="collapse" data-target=".demo2"></i> نتیجه</div>
+                    <div class="panel-body demo2 collapse in">
+                        <table class="table datatable display table-responsive table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>کد/نام مرکز</th>
+                                    <th>کد/نام کلاس</th>
+                                    <th>نام درس</th>
+                                    <th>مدرس</th>
+                                    <th>جنسیت</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!-- dialog body -->
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <span id="myModalbody"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+                    }
+
+
+    <script src="~/wwwroot/bower_components/jquery/dist/jquery-1.10.2.min.js"></script>
+
+
+    <script src="~/wwwroot/bower_components/data-tables/datatables.min.js"></script>
+    <script src="~/wwwroot/Scripts/jquery.validate.min.js"></script>
+    <script src="~/wwwroot/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/wwwroot/Scripts/bootstrap.rtl.min.js"></script>
+
+
+    <script>
+
+        var t = $('.datatable').DataTable({
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Persian.json"
+            }
+        });
+
+        function SearchCourses(form) {
+
+            var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        $(data).each(function () {
+                            t.clear().draw();
+                            if (userAuthorized) {
+                                t.row.add([
+                                    this.EducationalCenterNameAndCode,
+                                    this.CourseNameAndCode,
+                                    this.LessonName,
+                                    this.TeacherName,
+                                    this.SexType,
+                                    `<a href="#" onclick="return CourseSelect(${this.Select})" class="btn btn-success btn-sm btn-outline">انتخاب</a>`
+                                ]).draw(false);
+                            } else {
+                                t.row.add([
+                                    this.EducationalCenterNameAndCode,
+                                    this.CourseNameAndCode,
+                                    this.LessonName,
+                                    this.TeacherName,
+                                    this.SexType,
+                                    '<a href="#" class="btn btn-default btn-sm" disabled>انتخاب</a>'
+                                ]).draw(false);
+                            }
+
+
+                        });
+
+                    }
+                });
+            }
+
+
+            return false;
+        }
+
+    </script>
+
+
+    <script>
+        $("#btnCancel").on("click", function() {
+            $("#myModal").modal('hide');
+        });
+
+        function CourseSelect(courseId) {
+            if (courseId>0) {
+                $.ajax({
+                    type: 'Post',
+                    datatype: "json",
+                    url: '/ChooseCourses/AjaxCourseDetails/',
+                    data: { courseId: courseId },
+                    success: function (detail) {
+                        $("#myModalbody").html(detail);
+                        $('#myModal').modal('show');
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                });
+            }
+            return false;
+        }
+
+
+        function gotoRules(courseId) {
+            if (courseId>0) {
+                $.ajax({
+                    type: 'Post',
+                    datatype: "json",
+                    url: '/ChooseCourses/AjaxCourseRules/',
+                    data: { courseId: courseId },
+                    success: function (ecRule) {
+                        $("#myModalbody").html(ecRule).fadeIn('slow');
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                });
+            }
+            return false;
+        }
+
+        function registerNewCourse(courseId) {
+            if (courseId>0) {
+                $.ajax({
+                    type: 'Post',
+                    datatype: "json",
+                    url: '/ChooseCourses/AjaxRegisterNewCourse/',
+                    data: { courseId: courseId },
+                    success: function (data) {
+                        if (data.success) {
+                            debugger;
+                            window.location = "SuccessRegisterDialog";
+                        } else {
+
+                            $("#myModalbody").html(data.message).fadeIn('slow');
+                        }
+
+                    },
+                    error: function (e) {
+                        alert("error");
+                    }
+                });
+            }
+            return false;
+        }
+
+
+    </script>
+
+    <script>
+        $(document).ready(function ($) {
+            $("#ProvinceId").on('change',
+                function () {
+
+                    var provinceId = $(this).val();
+                    if (provinceId) {
+                        $.ajax({
+                            type: 'Post',
+                            datatype: "json",
+                            url: '/ChooseCourses/AjaxProvinceAreas/',
+                            data: { provinceId: provinceId },
+                            success: function (areas) {
+
+                                $('#AreaId').empty();
+                                $('#AreaId').append('<option selected>انتخاب کنید</option>');
+                                $(areas).each(function () {
+
+                                    var value = this.Id;
+                                    var text = this.Text;
+                                    $('#AreaId').append('<option value=' + value + '>' + text + '</option>');
+                                });
+
+                            },
+                            error: function (e) {
+                                alert("error");
+                            }
+                        });
+                    } else {
+                        $('#AreaId').remove('option');
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

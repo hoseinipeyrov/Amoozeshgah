@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <link href="~/wwwroot/bower_components/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+
+
+    <link href="~/wwwroot/Content/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/wwwroot/Content/vazir-font.css" rel="stylesheet" />
+   
+</head>
+<body>
+    @RenderBody()
+
+
+    <script src="~/wwwroot/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/Scripts/jquery.validate.min.js"></script>
+    <script src="~/wwwroot/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/wwwroot/Scripts/bootstrap.rtl.min.js"></script>
+
+
+    <script src="~/wwwroot/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/wwwroot/bower_components/select2/dist/js/i18n/fa.js"></script>
+   @RenderSection("scripts",false)
+</body>
+</html>

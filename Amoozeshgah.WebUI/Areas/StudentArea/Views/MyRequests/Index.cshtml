@@ -1,0 +1,33 @@
+﻿@model Amoozeshgah.Domain.Entities.Student
+    @{
+        ViewBag.Title = "درخواست تعیین سطح";
+    }
+
+<div class="col-md-12">
+    <a href="MyRequests/LanguageDeterminationLevel" class="btn btn-success btn-outline">درخواست تعیین سطح</a>
+    <table class="table datatable display table-responsive table-hover table-striped">
+        <thead>
+        <tr>
+            <th>نام آموزشگاه</th>
+            <th>کد آموزشگاه</th>
+            <th>تاریخ</th>
+            <th>زمان</th>
+            <th>روز</th>
+            @*<th>وضعیت</th>*@
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.LanguageDeterminationLevelRequests.OrderByDescending(ldlr=>ldlr.PreferDate).ToList())
+        {
+            <tr>
+                <td>@item.EducationalCenter.Site.Name</td>
+                <td>@item.EducationalCenter.Id</td>
+                <td>@item.PreferJalaliDay</td>
+                <td>@item.PreferJalaliHour</td>
+                <td>@item.PreferJalaliDayName</td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

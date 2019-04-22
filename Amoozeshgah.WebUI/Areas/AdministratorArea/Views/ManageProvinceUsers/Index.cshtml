@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Amoozeshgah.Domain.Entities.SiteUserRole>
+@{
+    ViewBag.Title = "مدیریت کاربران استانی";
+}
+<div class="col-md-12">
+    <br />
+    <a class="btn btn-success btn-outline" href="/AdministratorArea/ManageProvinceUsers/CreateNewUser">کاربر استانی جدید</a>
+    <hr />
+
+
+    <table class="table table-condensed table-hover datatable2">
+        <thead>
+            <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>نام کاربری</th>
+                <th>کد ملی</th>
+                <th>تلفن همراه</th>
+                <th>اداره</th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sur in Model)
+            {
+                <tr>
+                    <td>@sur.User.Person.FirstName</td>
+                    <td>@sur.User.Person.LastName</td>
+                    <td>@sur.User.UserName</td>
+                    <td>@sur.User.Person.NationalCode</td>
+                    <td>@sur.User.Person.MobileNo</td>
+
+                    <td>@sur.Site.Name</td>
+                    
+
+                    <td><a href="/AdministratorArea/ManageProvinceUsers/EditUser/@sur.Id" class="btn btn-sm btn-success btn-outline"><i class="fa fa-fw fa-pencil"></i>ویرایش</a></td>
+                </tr>
+
+
+            }
+
+        </tbody>
+    </table>
+</div>
+@section scripts{
+
+
+    }

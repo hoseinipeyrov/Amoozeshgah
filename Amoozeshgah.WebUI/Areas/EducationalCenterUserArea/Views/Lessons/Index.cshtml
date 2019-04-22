@@ -1,0 +1,14 @@
+﻿@model Amoozeshgah.ViewModel.LessonDto
+
+@{
+    ViewBag.Title = Model.PageTitle;
+}
+
+@Html.LobiPanelWithDataTable(Model, new[] { Html.StringNameFor(x => x.Name), Html.StringNameFor(x => x.Code), Html.StringNameFor(x => x.TotalHours), Html.StringNameFor(x => x.BookName) })
+
+
+@section scripts{
+    <script>
+        lessonsDataTable();
+    </script>
+}

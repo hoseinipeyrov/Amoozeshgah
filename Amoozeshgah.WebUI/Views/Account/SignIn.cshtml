@@ -1,0 +1,86 @@
+﻿@model Amoozeshgah.ViewModel.SignInDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>ورود به سامانه</title>
+
+
+    <link href="~/wwwroot/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <div class="form-horizontal">
+                        <h4>SignIn</h4>
+                        <hr />
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger", style = "color:red" })
+
+                        <div class="form-group">
+                           <label for="UserName" class="control-label col-md-2">نام کاربری</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="UserName" autocomplete = "off"/>
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password" class="control-label col-md-2">رمز عبور</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">&nbsp;</label>
+                            <div class="col-md-10">
+                                <img alt="Captcha" id="imgcpatcha" src="@Url.Action("CaptchaImage","Captcha")" style="" />
+                                <a href="#" id="refresh" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-refresh" ></i></a>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                           <label class="control-label col-md-2">کد امنیتی</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Captcha, new { htmlAttributes = new { @class = "form-control",placeholder="حاصل جمع" } })
+                                @Html.ValidationMessageFor(model => model.Captcha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="ورود" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <script src="~/wwwroot/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/wwwroot/Scripts/bootstrap.rtl.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#refresh').click(function () {
+
+            var d = new Date();
+            $("#imgcpatcha").attr("src", "/Captcha/CaptchaImage?" + d.getTime());
+
+        });
+    });
+    </script>
+
+</body>
+</html>

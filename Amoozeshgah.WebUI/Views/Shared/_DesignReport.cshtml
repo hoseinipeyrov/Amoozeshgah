@@ -1,0 +1,53 @@
+﻿@using System.Web.UI.WebControls;
+@using Stimulsoft.Report.Mvc;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Simple</title>
+    <style type="text/css" media="print">
+        @@page {
+            size: auto;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    @Html.Stimulsoft().RenderMvcDesignerScripts()
+    @Html.Stimulsoft().StiMvcViewer("MyViewr", new StiMvcViewerOptions(){
+       Controller = "Report",
+       ActionGetReportSnapshot = "FromLoadFileReport",
+       ActionViewerEvent = "ViewerEvent",
+       Width = Unit.Percentage(100),
+       Theme = StiTheme.Office2013,
+       ActionPrintReport = "PrintReport",
+       ActionExportReport = "ExportReport",
+       ToolbarBackgroundColor = System.Drawing.Color.Red
+   })
+
+    <script src="~/wwwroot/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/wwwroot/bower_components/shortcutjs/shortcut.js"></script>
+    <script language="javascript" type="text/javascript">
+
+        shortcut.add("ctrl+p", function () {
+
+            var myDiv = document.getElementById("MyViewrReportPanel").innerHTML;
+            var oldPage = document.body.innerHTML;
+            document.body.innerHTML =
+              "<html><head><title></title></head><body>" +
+              myDiv + "</body>";
+            window.print();
+            document.body.innerHTML = oldPage;
+        });
+
+    </script>
+</body>
+</html>

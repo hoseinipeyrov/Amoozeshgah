@@ -1,0 +1,176 @@
+﻿@model Amoozeshgah.ViewModel.EducationalCenterDefinitionDto
+
+
+@{
+    ViewBag.Title = "آموزشگاه جدید";
+}
+
+<div class="col-md-12">
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.EducationalCenterName, htmlAttributes: new { @class = "control-label col-md-5 required" })
+               
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.EducationalCenterName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EducationalCenterName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.MoassesFirstName, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.MoassesFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MoassesFirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.SexId, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(m => m.SexId, Model.Sexes, htmlAttributes: new { @class = "form-control bsp", multiple = "", data_max_options = "1" })
+                    @Html.ValidationMessageFor(model => model.SexId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.MoassesLastName, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.MoassesLastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MoassesLastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CategoryItemsIds, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    <select id="CategoryItemsIds" name="CategoryItemsIds" class="bsp bsp-ec-type form-control" multiple required>
+                        <optgroup label="زبان های خارجه" id="lc">
+                            <option value="1">موسسه زبان</option>
+                        </optgroup>
+                        <optgroup label="علمی آزاد" id="sc">
+                            <option value="2">ابتدایی</option>
+                            <option value="3">متوسطه اول</option>
+                            <option value="4">متوسطه دوم</option>
+                            <option value="5">کنکور</option>
+
+                        </optgroup>
+                    </select>
+                    @Html.ValidationMessageFor(model => model.CategoryItemsIds, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.MoassesNationalCode, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.MoassesNationalCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MoassesNationalCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ShiftId, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(m => m.ShiftId, Model.Shifts, htmlAttributes: new { @class = "form-control bsp", multiple = "", data_max_options = "1" })
+                    @Html.ValidationMessageFor(model => model.ShiftId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.MoassesMobileNo, htmlAttributes: new { @class = "control-label col-md-5 required" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.MoassesMobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MoassesMobileNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+   
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.PhoneNo1, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.PhoneNo1, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNo1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.PhoneNo2, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.PhoneNo2, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNo2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CertificateCode, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.CertificateCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CertificateCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", rows = "3" } })
+                    @Html.ValidationMessageFor(model => model.CertificateCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ایجاد" class="btn btn-success btn-outline" />
+                        <a href="/AdministratorArea/ManageEducationalCenters/Index" class="btn btn-warning btn-outline">برگشت</a>
+                    </div>
+                </div>
+        </div>
+    }
+
+    <div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#CategoryItemsIds").change(function () {
+                var selected = $(':selected', this);
+                var selopt = selected.closest('optgroup').attr('id');
+                if (selopt == "lc") {
+                    $('#sc').prop('disabled', true);
+                    $('.bsp-ec-type').selectpicker('refresh');
+                } else {
+                    $('#sc').prop('disabled', false);
+                    $('.bsp-ec-type').selectpicker('refresh');
+                }
+                if (selopt == "sc") {
+                    $('#lc').prop('disabled', true);
+                    $('.bsp-ec-type').selectpicker('refresh');
+                } else {
+                    $('#lc').prop('disabled', false);
+                    $('.bsp-ec-type').selectpicker('refresh');
+                }
+            });
+        });
+    </script>
+}
+
